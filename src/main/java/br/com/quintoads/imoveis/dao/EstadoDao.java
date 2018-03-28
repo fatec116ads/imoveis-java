@@ -7,4 +7,6 @@ import br.com.quintoads.imoveis.model.Estado;
 @Transactional
 public interface EstadoDao extends JpaRepository<Estado, String> {
 
+	Estado findByNomeEstado(String nome);
+
 }
