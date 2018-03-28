@@ -11,26 +11,26 @@ import br.com.quintoads.imoveis.dao.*;
 @Controller
 public class EstadoController {
 	
-	@RequestMapping("/inserir")
+	@RequestMapping("/create")
 	@ResponseBody
-	public String inserirEstado(String sigla, String nome) {
-		String siglaUF = "";
+	public String inserirEstado(String uf, String nome) {
+		String sigla = "";
 		try {
-			Estado estado = new Estado(sigla,nome);
+			Estado estado = new Estado(uf,nome);
 			estadoDao.save(estado);
-			siglaUF = estado.getSiglaEstado();
+			sigla = estado.getUf();
 		}
 		catch (Exception ex) {
-			return "Erro ao criar o Estado: " + ex.toString();
+			return "Erro ao criar o Estado: " + ex.toString() + "\n" +nome;
 		}
-		return "Estado criado com sucesso para a Sigla = " + siglaUF;
+		return "Estado criado com sucesso, id: " + sigla;
 		
 	}
 	@RequestMapping("/delete")
 	@ResponseBody
-	public String deletarEstado(String sigla) {
+	public String deletarEstado(String uf) {
 		try {
-			Estado estado = new Estado(sigla);
+			Estado estado = new Estado(uf);
 			estadoDao.delete(estado);
 		}
 		catch (Exception ex) {
@@ -40,9 +40,10 @@ public class EstadoController {
 	}
 	@RequestMapping("/update")
 	@ResponseBody
-	public String updateEstado(String sigla, String nome) {
+	public String updateEstado(String uf, String nome) {
 		try {
-			Estado estado = estadoDao.findBySiglaEstado(sigla);
+			Estado estado = estadoDao.getOne(uf);
+			estado.setUf(uf);
 			estado.setNomeEstado(nome);
 			estadoDao.save(estado);
 		}

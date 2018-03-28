@@ -2,8 +2,6 @@ package br.com.quintoads.imoveis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -13,35 +11,37 @@ import javax.validation.constraints.NotNull;
 public class Estado {
 
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long codEstado;
+private String uf;
 
 @NotNull
-@Column(unique = true)
-private String siglaEstado;
-
-@NotNull
+@Column(name = "nomeEstado")
 private String nomeEstado;
 
 public Estado() {}
-public Estado(String sigla) {
-	this.siglaEstado = sigla;
+public Estado(String uf) {
+	this.uf = uf;
 }
-public Estado(String sigla, String nome) {
-	this.siglaEstado = sigla;
-	this.nomeEstado = nome;	
+public Estado(String uf, String nome) {
+	this.uf = uf;
+	this.nomeEstado = nome;
 }
 
-public void setSiglaEstado(String sigla) {
-	this.siglaEstado = sigla;
+public void setUf(String uf){
+	this.uf = uf;
 }
-public String getSiglaEstado() {
-	return this.siglaEstado;
+public String getUf() {
+	return this.uf;
 }
-public void setNomeEstado(String nome) {
-	this.nomeEstado = nome;
+public void setNomeEstado(String estado) {
+	this.nomeEstado = estado;
 }
 public String getNomeEstado() {
 	return this.nomeEstado;
 }
+
+@Override
+public String toString() {
+	return "Estado = UF: "+ this.uf + " | Nome: "+this.nomeEstado;
+}
+
 }
