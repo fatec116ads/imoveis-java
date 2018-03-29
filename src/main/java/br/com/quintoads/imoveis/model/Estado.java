@@ -18,6 +18,7 @@ private String uf;
 private String nomeEstado;
 
 public Estado() {}
+
 public Estado(String uf) {
 	this.uf = uf;
 }

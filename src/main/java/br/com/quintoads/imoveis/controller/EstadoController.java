@@ -1,7 +1,6 @@
 package br.com.quintoads.imoveis.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.quintoads.imoveis.model.Estado;
-import br.com.quintoads.imoveis.dao.*;
+import br.com.quintoads.imoveis.service.EstadoService;
 
 @Controller
 public class EstadoController {
 	
-	@RequestMapping("/create")
+	@RequestMapping("/inserir")
 	@ResponseBody
 	public String inserirEstado(String uf, String nome) {
 		String sigla = "";
 		try {
 			Estado estado = new Estado(uf,nome);
-			estadoDao.save(estado);
+			estadoServ.inserir(estado);
 			sigla = estado.getUf();
 		}
 		catch (Exception ex) {
@@ -33,16 +32,28 @@ public class EstadoController {
 	@RequestMapping("/buscar-pelo-nome")
 	@ResponseBody
 	public String buscaPeloNome(String nome) {
-		String uf ="";
-		Estado estado;
+		Estado estado = new Estado("o",nome);
+		List<Estado> estados = new ArrayList<Estado>();
 		try {
-			estado = estadoDao.findByNomeEstado(nome);
-			uf =estado.getUf();
+			estados = estadoServ.consultar(estado);
+		}
+		catch (Exception ex) {
+			return "Nenhum estado encontrado"+ ex.toString();
+		}
+		return "Resultado da busca: "+ estados;
+	}
+	
+	@RequestMapping("/buscar")
+	@ResponseBody
+	public String buscar(String uf) {
+		Estado estado = new Estado(uf);
+		try {
+			estado = estadoServ.buscar(estado);
 		}
 		catch (Exception ex) {
 			return "Estado não encontrado";
 		}
-		return "Estado encontrado: "+estado.toString();
+		return "Resultado da busca: "+estado.toString();
 	}
 	
 	@RequestMapping("/delete")
@@ -50,7 +61,7 @@ public class EstadoController {
 	public String deletarEstado(String uf) {
 		try {
 			Estado estado = new Estado(uf);
-			estadoDao.delete(estado);
+			estadoServ.excluir(estado);;
 		}
 		catch (Exception ex) {
 			return "Erro ao deletar o Estado:" + ex.toString();
@@ -61,10 +72,10 @@ public class EstadoController {
 	@ResponseBody
 	public String updateEstado(String uf, String nome) {
 		try {
-			Estado estado = estadoDao.getOne(uf);
-			estado.setUf(uf);
+			Estado estado = new Estado(uf);
+			estadoServ.buscar(estado);
 			estado.setNomeEstado(nome);
-			estadoDao.save(estado);
+			estadoServ.alterar(estado);
 		}
 		catch (Exception ex) {
 			return "Erro ao atualizar o estado: " + ex.toString();
@@ -75,13 +86,10 @@ public class EstadoController {
 	@ResponseBody
 	public List<Estado> listar(){
 		List<Estado> lista = new ArrayList<Estado>();
-		Iterator<Estado> iterator = estadoDao.findAll().iterator();
-		while(iterator.hasNext()) {
-			lista.add(iterator.next());
-		}
+		lista = estadoServ.listarTodos();
 		return lista;
 	}
 	
 	@Autowired
-	private EstadoDao estadoDao;
+	private EstadoService estadoServ;
 }
