@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "estado")
 public class Estado {
@@ -42,7 +45,7 @@ public String getNomeEstado() {
 
 @Override
 public String toString() {
-	return "Estado = UF: "+ this.uf + " | Nome: "+this.nomeEstado;
+	return "[uf="+ this.uf + ", nome="+this.nomeEstado+"]";
 }
 
 }

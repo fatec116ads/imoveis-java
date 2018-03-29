@@ -3,86 +3,79 @@ package br.com.quintoads.imoveis.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.quintoads.imoveis.model.Estado;
 import br.com.quintoads.imoveis.service.EstadoService;
 
-@Controller
+@RestController
+@RequestMapping("/estado")
 public class EstadoController {
 	
-	@RequestMapping("/inserir")
+	@PostMapping("/inserir")
 	@ResponseBody
-	public String inserirEstado(String uf, String nome) {
-		String sigla = "";
+	public void inserirEstado(@Valid @RequestBody Estado estado) {
 		try {
-			Estado estado = new Estado(uf,nome);
 			estadoServ.inserir(estado);
-			sigla = estado.getUf();
 		}
 		catch (Exception ex) {
-			return "Erro ao criar o Estado: " + ex.toString() + "\n" +nome;
+			System.out.println("Erro ao criar o Estado: " + ex.toString() + "\n" + estado);
 		}
-		return "Estado criado com sucesso, id: " + sigla;
+			System.out.println("Estado criado com sucesso, id: " + estado.getUf());
 		
 	}
-	@RequestMapping("/buscar-pelo-nome")
+	@PostMapping("/buscar-pelo-nome")
 	@ResponseBody
-	public String buscaPeloNome(String nome) {
-		Estado estado = new Estado("o",nome);
-		List<Estado> estados = new ArrayList<Estado>();
-		try {
-			estados = estadoServ.consultar(estado);
-		}
-		catch (Exception ex) {
-			return "Nenhum estado encontrado"+ ex.toString();
-		}
-		return "Resultado da busca: "+ estados;
+	public List<Estado> buscaPeloNome(@Valid @RequestBody Estado estado) {
+			 return estadoServ.consultar(estado);
 	}
 	
-	@RequestMapping("/buscar")
+	@PostMapping("/buscar")
 	@ResponseBody
-	public String buscar(String uf) {
-		Estado estado = new Estado(uf);
+	public Estado buscar(@Valid @RequestBody Estado estado) {
 		try {
-			estado = estadoServ.buscar(estado);
+		return estadoServ.buscar(estado);
 		}
 		catch (Exception ex) {
-			return "Estado não encontrado";
+			System.out.println("Erro ao buscar o Estado: " + ex.toString() + estado);
 		}
-		return "Resultado da busca: "+estado.toString();
-	}
+		return estado;
+		}
 	
-	@RequestMapping("/delete")
+	@PostMapping("/delete")
 	@ResponseBody
-	public String deletarEstado(String uf) {
+	public void deletarEstado(@Valid @RequestBody Estado estado) {
 		try {
-			Estado estado = new Estado(uf);
-			estadoServ.excluir(estado);;
+			estadoServ.excluir(estado);
 		}
 		catch (Exception ex) {
-			return "Erro ao deletar o Estado:" + ex.toString();
+			System.out.println("Erro ao deletar o Estado:" + ex.toString());
 		}
-		return "Estado deletado com sucesso";
+		System.out.println("Estado deletado com sucesso");
 	}
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ResponseBody
-	public String updateEstado(String uf, String nome) {
+	public void updateEstado(@Valid @RequestBody Estado estado) {
+			String nome ="";
 		try {
-			Estado estado = new Estado(uf);
+			nome = estado.getNomeEstado();
 			estadoServ.buscar(estado);
 			estado.setNomeEstado(nome);
 			estadoServ.alterar(estado);
 		}
 		catch (Exception ex) {
-			return "Erro ao atualizar o estado: " + ex.toString();
+			System.out.println("Erro ao atualizar o estado: " + ex.toString());
 		}
-		return "Estado atualizado com sucesso";
+		System.out.println("Estado atualizado com sucesso"+ estado);
 	}
-	@RequestMapping("/listar")
+	@PostMapping("/listar")
 	@ResponseBody
 	public List<Estado> listar(){
 		List<Estado> lista = new ArrayList<Estado>();
