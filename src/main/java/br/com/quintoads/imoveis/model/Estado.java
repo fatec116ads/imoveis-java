@@ -17,7 +17,7 @@ public class Estado {
 private String uf;
 
 @NotNull
-@Column(name = "nomeEstado")
+@Column(name = "nome_Estado")
 private String nomeEstado;
 
 public Estado() {}
