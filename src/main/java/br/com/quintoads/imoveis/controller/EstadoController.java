@@ -78,7 +78,7 @@ public class EstadoController {
 	@PostMapping("/listar")
 	@ResponseBody
 	public List<Estado> listar(){
-		List<Estado> lista = new ArrayList<Estado>();
+		List<Estado> lista = new ArrayList<>();
 		lista = estadoServ.listarTodos();
 		return lista;
 	}
