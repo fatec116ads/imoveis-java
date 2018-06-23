@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package br.com.quintoads.imoveis.model;
 
 import javax.persistence.Column;
@@ -48,4 +49,19 @@ public String toString() {
 	return "[cd="+ this.cdCidade + ", nm="+this.nmCidade+"]";
 }
 
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.quintoads.imoveis.model;
+
+/**
+ *
+ * @author DEV_UNITED
+ */
+public class Cidade {
+    
+>>>>>>> 0b20804... Commit TbImovel
 }
