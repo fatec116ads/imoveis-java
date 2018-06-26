@@ -13,61 +13,60 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "FaixaImovel")
 public class FaixaImovel {
 
-@Id
-private String cdFaixa;
+	@Id
+	private String cdFaixa;
 
-@NotNull
-@Column(name = "nmFaixa")
-private String nmFaixa;
+	@NotNull
+	@Column(name = "nmFaixa")
+	private String nmFaixa;
 
-@Column(name = "vlMinimo")
-private String vlMinimo;
+	@Column(name = "vlMinimo")
+	private String vlMinimo;
 
-@Column(name = "vlMaximo")
-private String vlMaximo;
-
-
-public FaixaImovel() {}
-
-public void setCdFaixa(String cdFaixa){
-	this.cdFaixa = cdFaixa;
-}
-public String getcdFaixa() {
-	return this.cdFaixa;
-}
-public void setNmFaixa(String nmFaixa) {
-	this.nmFaixa = nmFaixa;
-}
-
-public void setVlMinimo(String vlMinimo) {
-	this.vlMinimo = vlMinimo;
-}
-public void setVlMaximo(String vlMaximo) {
-	this.vlMaximo = vlMaximo;
-}
+	@Column(name = "vlMaximo")
+	private String vlMaximo;
 
 
-public String getCdFaixa() {
-	return this.cdFaixa;
-}
+	public FaixaImovel() {}
 
 
-public String getNmFaixa() {
-	return this.nmFaixa;
-}
-
-public String getVlMinimo() {
-	return this.vlMinimo;
-}
-
-public String getVlMaximo() {
-	return this.vlMaximo;
-}
+	public String getCdFaixa() {
+		return cdFaixa;
+	}
 
 
-@Override
-public String toString() {
-	return "[Codigo Faixa ="+ this.cdFaixa + ", Nome Faixa="+this.nmFaixa+" , Valor Minimo="+this.vlMinimo+", Valor Maximo="+this.vlMaximo+" ]";
-}
+	public void setCdFaixa(String cdFaixa) {
+		this.cdFaixa = cdFaixa;
+	}
+
+
+	public String getNmFaixa() {
+		return nmFaixa;
+	}
+
+
+	public void setNmFaixa(String nmFaixa) {
+		this.nmFaixa = nmFaixa;
+	}
+
+
+	public String getVlMinimo() {
+		return vlMinimo;
+	}
+
+
+	public void setVlMinimo(String vlMinimo) {
+		this.vlMinimo = vlMinimo;
+	}
+
+
+	public String getVlMaximo() {
+		return vlMaximo;
+	}
+
+
+	public void setVlMaximo(String vlMaximo) {
+		this.vlMaximo = vlMaximo;
+	}
 
 }

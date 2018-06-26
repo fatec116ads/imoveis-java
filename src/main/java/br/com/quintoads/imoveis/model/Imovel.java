@@ -57,6 +57,8 @@ public class Imovel {
         this.dataLancto = dataLancto;
     }
 
+    public Imovel() {}
+    
     public int getCdImovel() {
         return cdImovel;
     }

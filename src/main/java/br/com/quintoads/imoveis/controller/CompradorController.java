@@ -52,8 +52,10 @@ public class CompradorController {
 	@PostMapping("/delete")
 	@ResponseBody
 	public void deletarComprador(@Valid @RequestBody Comprador comprador) {
+		System.out.println("To no delete");
 		try {
 			compradorServ.excluir(comprador);
+			
 		}
 		catch (Exception ex) {
 			System.out.println("Erro ao deletar o Comprador:" + ex.toString());

@@ -38,7 +38,7 @@ private ImovelService imovelServ;
 		catch (Exception ex) {
 			System.out.println("Erro ao criar o Imovel: " + ex.toString() + "\n" + imovel);
 		}
-			System.out.println("Estado criado com sucesso, id: " + imovel.getNmEndereco());
+			System.out.println("Imóvel criado com sucesso, id: " + imovel.getNmEndereco());
 		
 	}
 	@PostMapping("/buscar-pelo-nome")
