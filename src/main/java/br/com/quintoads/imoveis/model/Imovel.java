@@ -22,7 +22,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "imovel")
 public class Imovel {
     
-    @Id
+
+
+	@Id
     private int cdImovel;
     
     @Column(name = "nome_endereco")
@@ -42,8 +44,11 @@ public class Imovel {
      
      @Column(name = "data_lancto")
     private Date dataLancto;
+     
+    
+    public Imovel() {}
 
-    public Imovel(int cdImovel) {
+	public Imovel(int cdImovel) {
         this.cdImovel = cdImovel;
     }
 
@@ -113,7 +118,12 @@ public class Imovel {
         this.dataLancto = dataLancto;
     }
      
-    
+    @Override
+	public String toString() {
+		return "Imovel [cdImovel=" + cdImovel + ", nmEndereco=" + nmEndereco + ", nrAreaUtil=" + nrAreaUtil
+				+ ", nrAreaTotal=" + nrAreaTotal + ", vlPreco=" + vlPreco + ", stVendido=" + stVendido + ", dataLancto="
+				+ dataLancto + "]";
+	}
      
      
     
