@@ -6,10 +6,12 @@
 package br.com.quintoads.imoveis.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
 import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "oferta")
-public class Oferta implements Serializable{
+public class Oferta {
 
     @Id
     private int cdOferta;
@@ -29,48 +31,72 @@ public class Oferta implements Serializable{
     private float vlOferta;
     
     @NotNull
-    private Date dtOferta; 
+    private Date dtOferta;
+    
+    @ManyToOne
+    @JoinColumn(name = "cdComprador")
+    private Comprador comprador;
+    
+    @ManyToOne
+    @JoinColumn(name = "cdImovel")
+    private Imovel imovel;
     
     public Oferta() {
     }
+        
+	public Oferta(int cdOferta, float vlOferta, Date dtOferta, Comprador comprador, Imovel imovel) {
+		this.cdOferta = cdOferta;
+		this.vlOferta = vlOferta;
+		this.dtOferta = dtOferta;
+		this.comprador = comprador;
+		this.imovel = imovel;
+	}
 
-    public Oferta(int cdOferta, float vlOferta, Date dtOferta) {
-        this.cdOferta = cdOferta;
-        this.vlOferta = vlOferta;
-        this.dtOferta = dtOferta;
-    }
+	public int getCdOferta() {
+		return cdOferta;
+	}
 
-    public int getCdOferta() {
-        return cdOferta;
-    }
+	public void setCdOferta(int cdOferta) {
+		this.cdOferta = cdOferta;
+	}
 
-    public void setCdOferta(int cdOferta) {
-        this.cdOferta = cdOferta;
-    }
+	public float getVlOferta() {
+		return vlOferta;
+	}
 
-    public float getVlOferta() {
-        return vlOferta;
-    }
+	public void setVlOferta(float vlOferta) {
+		this.vlOferta = vlOferta;
+	}
 
-    public void setVlOferta(float vlOferta) {
-        this.vlOferta = vlOferta;
-    }
+	public Date getDtOferta() {
+		return dtOferta;
+	}
 
-    public Date getDtOferta() {
-        return dtOferta;
-    }
+	public void setDtOferta(Date dtOferta) {
+		this.dtOferta = dtOferta;
+	}
 
-    public void setDtOferta(Date dtOferta) {
-        this.dtOferta = dtOferta;
-    }
+	public Comprador getComprador() {
+		return comprador;
+	}
+
+	public void setComprador(Comprador comprador) {
+		this.comprador = comprador;
+	}
+
+	public Imovel getImovel() {
+		return imovel;
+	}
+
+	public void setImovel(Imovel imovel) {
+		this.imovel = imovel;
+	}
+
+	@Override
+	public String toString() {
+		return "{cdOferta:" + cdOferta + ",\n vlOferta:" + vlOferta + ",\n dtOferta:" + dtOferta + ",\n comprador:"
+				+ comprador.toString() + ",\n imovel:" + imovel.toString() + " }";
+	}
+
     
-    @Override
-    public String toString() {
-        return new StringBuilder()
-                .append("[cdOferta=").append(this.cdOferta)
-                .append(", vlOferta=").append(this.vlOferta)
-                .append(", dtOferta=").append(this.dtOferta.toString())
-                .append("]").toString();
-    }
-
 }

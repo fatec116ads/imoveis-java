@@ -24,13 +24,13 @@ public class VendedorController {
 		vendeServ.inserir(vendedor);
 	}
 	
-	@PostMapping("/alterar")
+	@PostMapping("/update")
 	@ResponseBody
 	public void alterar(@Valid @RequestBody Vendedor vendedor) {
 		vendeServ.alterar(vendedor);
 	}
 	
-	@PostMapping("/excluir")
+	@PostMapping("/delete")
 	@ResponseBody
 	public void excluir(@Valid @RequestBody Vendedor vendedor) {
 		vendeServ.excluir(vendedor);

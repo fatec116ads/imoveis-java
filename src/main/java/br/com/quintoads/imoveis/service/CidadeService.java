@@ -12,5 +12,6 @@ public interface CidadeService {
 	public void alterar(Cidade cidade);
 	public List<Cidade> listarTodos();
 	public List<Cidade> consultar (Cidade cidade);
+	public List<Cidade> consultarUf (Cidade cidade);
 
 }

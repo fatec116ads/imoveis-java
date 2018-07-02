@@ -45,7 +45,9 @@ public String getNomeEstado() {
 
 @Override
 public String toString() {
-	return "[uf="+ this.uf + ", nome="+this.nomeEstado+"]";
+	return "{uf:" + uf + ",\n nomeEstado:" + nomeEstado + " }";
 }
+
+
 
 }

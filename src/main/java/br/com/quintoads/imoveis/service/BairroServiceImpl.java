@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.quintoads.imoveis.dao.BairroDao;
-import br.com.quintoads.imoveis.dao.EstadoDao;
 import br.com.quintoads.imoveis.model.Bairro;
-import br.com.quintoads.imoveis.model.Estado;
 
 @Service
 public class BairroServiceImpl implements BairroService{
@@ -24,7 +22,7 @@ public class BairroServiceImpl implements BairroService{
 	@Override
 	public Bairro buscar(Bairro bairro) {
 		// TODO Auto-generated method stub
-		return bairroDao.getOne(bairro.getCodBairro());
+		return bairroDao.getOne(bairro.getCdBairro());
 	}
 
 	@Override
@@ -36,7 +34,7 @@ public class BairroServiceImpl implements BairroService{
 	@Override
 	public void excluir(Bairro bairro) {
 		// TODO Auto-generated method stub
-		bairroDao.deleteById(bairro.getCodBairro());
+		bairroDao.deleteById(bairro.getCdBairro());
 	}
 
 	@Override
@@ -49,6 +47,12 @@ public class BairroServiceImpl implements BairroService{
 	public List<Bairro> consultar(Bairro bairro) {
 		// TODO Auto-generated method stub
 		return bairroDao.findByNomeBairro(bairro.getNmBairro());
+	}
+
+	@Override
+	public List<Bairro> consultarCidade(Bairro bairro) {
+		// TODO Auto-generated method stub
+		return bairroDao.findByCidade(bairro.getCidade().getCdCidade());
 	}
 
 	

@@ -5,7 +5,6 @@
  */
 package br.com.quintoads.imoveis.dao;
 
-import br.com.quintoads.imoveis.model.Estado;
 import br.com.quintoads.imoveis.model.Imovel;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

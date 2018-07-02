@@ -3,6 +3,8 @@ package br.com.quintoads.imoveis.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -14,27 +16,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Bairro {
 
 @Id
-private int codBairro;
+private int cdBairro;
 
 @NotNull
 @Column(name = "nmBairro")
 private String nmBairro;
 
+@ManyToOne
+@JoinColumn(name = "cdCidade")
+private Cidade cidade;
+
 public Bairro() {}
 
-public Bairro(int codBairro) {
-	this.codBairro = codBairro;
-}
-public Bairro(int codBairro, String nmBairro) {
-	this.codBairro = codBairro;
+public Bairro(int cdBairro, @NotNull String nmBairro, Cidade cidade) {
+	this.cdBairro = cdBairro;
 	this.nmBairro = nmBairro;
+	this.cidade = cidade;
 }
 
-public void setCodBairro(int codBairro){
-	this.codBairro = codBairro;
+
+public void setCdBairro(int cdBairro){
+	this.cdBairro = cdBairro;
 }
-public int getCodBairro() {
-	return this.codBairro;
+public int getCdBairro() {
+	return this.cdBairro;
 }
 public void setNmBairro(String nmBairro) {
 	this.nmBairro = nmBairro;
@@ -43,9 +48,19 @@ public String getNmBairro() {
 	return this.nmBairro;
 }
 
+public Cidade getCidade() {
+	return this.cidade;
+}
+
+public void setCidade(Cidade cidade) {
+	this.cidade = cidade;
+}
+
 @Override
 public String toString() {
-	return "[Codigo do Bairro ="+ this.codBairro + ", Nome Do Bairro ="+this.nmBairro+"]";
+	return "{cdBairro:" + cdBairro + ",\n nmBairro:" + nmBairro + ",\n cidade:" + cidade.toString() + " }";
 }
+
+
 
 }

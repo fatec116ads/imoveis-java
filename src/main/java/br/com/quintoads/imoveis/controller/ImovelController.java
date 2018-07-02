@@ -5,7 +5,6 @@
  */
 package br.com.quintoads.imoveis.controller;
 
-import br.com.quintoads.imoveis.model.Estado;
 import br.com.quintoads.imoveis.model.Imovel;
 import br.com.quintoads.imoveis.service.ImovelService;
 

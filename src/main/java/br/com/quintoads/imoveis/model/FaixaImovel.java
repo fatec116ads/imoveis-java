@@ -14,60 +14,81 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class FaixaImovel {
 
 @Id
-private String cdFaixa;
+private Integer cdFaixa;
 
 @NotNull
 @Column(name = "nmFaixa")
 private String nmFaixa;
 
 @Column(name = "vlMinimo")
-private String vlMinimo;
+private float vlMinimo;
 
 @Column(name = "vlMaximo")
-private String vlMaximo;
+private float vlMaximo;
 
 
 public FaixaImovel() {}
 
-public void setCdFaixa(String cdFaixa){
-	this.cdFaixa = cdFaixa;
-}
-public String getcdFaixa() {
-	return this.cdFaixa;
-}
-public void setNmFaixa(String nmFaixa) {
-	this.nmFaixa = nmFaixa;
-}
 
-public void setVlMinimo(String vlMinimo) {
+public FaixaImovel(Integer cdFaixa, String nmFaixa, float vlMinimo, float vlMaximo) {
+	this.cdFaixa = cdFaixa;
+	this.nmFaixa = nmFaixa;
 	this.vlMinimo = vlMinimo;
-}
-public void setVlMaximo(String vlMaximo) {
 	this.vlMaximo = vlMaximo;
 }
 
 
-public String getCdFaixa() {
-	return this.cdFaixa;
+
+public Integer getCdFaixa() {
+	return cdFaixa;
 }
+
+
+
+public void setCdFaixa(Integer cdFaixa) {
+	this.cdFaixa = cdFaixa;
+}
+
 
 
 public String getNmFaixa() {
-	return this.nmFaixa;
+	return nmFaixa;
 }
 
-public String getVlMinimo() {
-	return this.vlMinimo;
+
+
+public void setNmFaixa(String nmFaixa) {
+	this.nmFaixa = nmFaixa;
 }
 
-public String getVlMaximo() {
-	return this.vlMaximo;
+
+
+public float getVlMinimo() {
+	return vlMinimo;
+}
+
+
+
+public void setVlMinimo(float vlMinimo) {
+	this.vlMinimo = vlMinimo;
+}
+
+
+
+public float getVlMaximo() {
+	return vlMaximo;
+}
+
+
+
+public void setVlMaximo(float vlMaximo) {
+	this.vlMaximo = vlMaximo;
 }
 
 
 @Override
 public String toString() {
-	return "[Codigo Faixa ="+ this.cdFaixa + ", Nome Faixa="+this.nmFaixa+" , Valor Minimo="+this.vlMinimo+", Valor Maximo="+this.vlMaximo+" ]";
+	return "{ cdFaixa:" + cdFaixa + ",\n nmFaixa:" + nmFaixa + ",\n vlMinimo:" + vlMinimo + ",\n vlMaximo:" + vlMaximo	+ " }";
 }
 
 }

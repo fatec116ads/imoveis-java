@@ -28,13 +28,18 @@ public class CidadeController {
 		catch (Exception ex) {
 			System.out.println("Erro ao criar a Cidade: " + ex.toString() + "\n" + cidade);
 		}
-			System.out.println("Cidade criada com sucesso, id: " + cidade.getcdCidade());
+			System.out.println("Cidade criada com sucesso, id: " + cidade.getCdCidade());
 		
 	}
 	@PostMapping("/buscar-pelo-nome")
 	@ResponseBody
 	public List<Cidade> buscaPeloNome(@Valid @RequestBody Cidade cidade) {
 			 return cidadeServ.consultar(cidade);
+	}
+	@PostMapping("/buscar-pelo-estado")
+	@ResponseBody
+	public List<Cidade> buscaPeloEstado(@Valid @RequestBody Cidade cidade) {
+			 return cidadeServ.consultarUf(cidade);
 	}
 	
 	@PostMapping("/buscar")

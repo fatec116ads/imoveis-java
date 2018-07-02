@@ -22,7 +22,7 @@ public class CidadeServiceImpl implements CidadeService{
 	@Override
 	public Cidade buscar(Cidade cidade) {
 		// TODO Auto-generated method stub
-		return cidadedao.getOne(cidade.getcdCidade());
+		return cidadedao.getOne(cidade.getCdCidade());
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class CidadeServiceImpl implements CidadeService{
 	@Override
 	public void excluir(Cidade cidade) {
 		// TODO Auto-generated method stub
-		cidadedao.deleteById(cidade.getcdCidade());
+		cidadedao.deleteById(cidade.getCdCidade());
 	}
 
 	@Override
@@ -47,5 +47,10 @@ public class CidadeServiceImpl implements CidadeService{
 	public List<Cidade> consultar(Cidade cidade) {
 		// TODO Auto-generated method stub
 		return cidadedao.findByNomeCidade(cidade.getnmCidade());
+	}
+
+	@Override
+	public List<Cidade> consultarUf(Cidade cidade) {	
+	 return cidadedao.findByEstado(cidade.getEstado().getUf());
 	}
 }

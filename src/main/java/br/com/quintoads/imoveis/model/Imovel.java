@@ -10,8 +10,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -24,28 +25,35 @@ public class Imovel {
     
 
 
-	@Id
+	 @Id
     private int cdImovel;
     
-    @Column(name = "nome_endereco")
+     @Column(name = "nome_endereco")
     private String nmEndereco;
+     
+     @ManyToOne
+     @JoinColumn(name = "cdBairro")
+    private Bairro bairro;
     
-    @Column(name = "nr_area_util")
+     @Column(name = "nr_area_util")
     private float nrAreaUtil;
     
      @Column(name = "nr_area_total")
     private float nrAreaTotal;
      
-    @Column(name = "preco")
+     @Column(name = "preco")
     private float vlPreco;
     
+     @ManyToOne
+     @JoinColumn(name = "cdVendedor")
+     private Vendedor vendedor;
+     
      @Column(name = "st_vendido")
     private int stVendido;
      
      @Column(name = "data_lancto")
     private Date dataLancto;
-     
-    
+        
     public Imovel() {}
 
 	public Imovel(int cdImovel) {
@@ -77,6 +85,14 @@ public class Imovel {
     public void setNmEndereco(String nmEndereco) {
         this.nmEndereco = nmEndereco;
     }
+    
+    public Bairro getBairro() {
+    	return this.bairro;
+    }
+    
+    public void setBairro(Bairro bairro) {
+    	this.bairro = bairro;
+    }
 
     public float getNrAreaUtil() {
         return nrAreaUtil;
@@ -101,6 +117,14 @@ public class Imovel {
     public void setVlPreco(float vlPreco) {
         this.vlPreco = vlPreco;
     }
+    
+    public Vendedor getVendedor() {
+    	return this.vendedor;
+    }
+    
+    public void setVendedor(Vendedor vendedor) {
+    	this.vendedor = vendedor;
+    }
 
     public int getStVendido() {
         return stVendido;
@@ -117,13 +141,15 @@ public class Imovel {
     public void setDataLancto(Date dataLancto) {
         this.dataLancto = dataLancto;
     }
-     
-    @Override
+
+	@Override
 	public String toString() {
-		return "Imovel [cdImovel=" + cdImovel + ", nmEndereco=" + nmEndereco + ", nrAreaUtil=" + nrAreaUtil
-				+ ", nrAreaTotal=" + nrAreaTotal + ", vlPreco=" + vlPreco + ", stVendido=" + stVendido + ", dataLancto="
-				+ dataLancto + "]";
+		return "{cdImovel:" + cdImovel + ",\n nmEndereco:" + nmEndereco + ",\n bairro:" + bairro.toString() + ",\n nrAreaUtil:"
+				+ nrAreaUtil + ",\n nrAreaTotal:" + nrAreaTotal + ",\n vlPreco:" + vlPreco + ",\n vendedor:" + vendedor.toString()
+				+ ",\n stVendido:" + stVendido + ",\n dataLancto:" + dataLancto + " }";
 	}
+     
+
      
      
     

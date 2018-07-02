@@ -3,6 +3,8 @@ package br.com.quintoads.imoveis.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +22,10 @@ private int cdComprador;
 @Column(name = "nmComprador")
 private String nmComprador;
 
+@ManyToOne
+@JoinColumn(name = "cdBairro")
+private Bairro bairro;
+
 @Column(name = "nmEndereco")
 private String nmEndereco;
 
@@ -29,10 +35,23 @@ private String nrCpfComprador;
 @Column(name = "telComprador")
 private String telComprador;
 
+public Comprador() {}
+
 
 public int getCdComprador() {
 	return cdComprador;
 }
+
+public Comprador(int cdComprador, @NotNull String nmComprador, Bairro bairro, String nmEndereco, String nrCpfComprador,
+		String telComprador) {
+	this.cdComprador = cdComprador;
+	this.nmComprador = nmComprador;
+	this.bairro = bairro;
+	this.nmEndereco = nmEndereco;
+	this.nrCpfComprador = nrCpfComprador;
+	this.telComprador = telComprador;
+}
+
 
 public void setCdComprador(int cdComprador) {
 	this.cdComprador = cdComprador;
@@ -70,13 +89,20 @@ public void setTelComprador(String telComprador) {
 	this.telComprador = telComprador;
 }
 
-public Comprador() {}
+public Bairro getBairro() {
+	return this.bairro;
+}
+
+public void setBairro(Bairro bairro) {
+	this.bairro = bairro;
+}
+
 
 @Override
 public String toString() {
-	return "[codigo="+ this.cdComprador + ", nome="+this.nmComprador+"]";
+	return "{cdComprador:" + cdComprador + ",\n nmComprador:" + nmComprador + ",\n bairro:" + bairro.toString() + ",\n nmEndereco:"
+			+ nmEndereco + ",\n nrCpfComprador:" + nrCpfComprador + ",\n telComprador:" + telComprador + " }";
 }
-
 
 
 

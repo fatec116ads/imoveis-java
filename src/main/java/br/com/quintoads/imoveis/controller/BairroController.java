@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.quintoads.imoveis.model.Bairro;
-import br.com.quintoads.imoveis.model.Estado;
 import br.com.quintoads.imoveis.service.BairroService;
-import br.com.quintoads.imoveis.service.EstadoService;
 
 @RestController
 @RequestMapping("/bairro")
@@ -30,7 +28,7 @@ public class BairroController {
 		catch (Exception ex) {
 			System.out.println("Erro ao criar o Estado: " + ex.toString() + "\n" + bairro);
 		}
-			System.out.println("Estado criado com sucesso, id: " + bairro.getCodBairro());
+			System.out.println("Estado criado com sucesso, id: " + bairro.getCdBairro());
 		
 	}
 	@PostMapping("/buscar-pelo-nome")
@@ -38,6 +36,13 @@ public class BairroController {
 	public List<Bairro> buscaPeloNome(@Valid @RequestBody Bairro bairro) {
 			 return bairroServ.consultar(bairro);
 	}
+	
+	@PostMapping("/buscar-pela-cidade")
+	@ResponseBody
+	public List<Bairro> buscaPelaCidade(@Valid @RequestBody Bairro bairro) {
+			 return bairroServ.consultarCidade(bairro);
+	}
+
 	
 	@PostMapping("/buscar")
 	@ResponseBody

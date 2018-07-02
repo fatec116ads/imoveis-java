@@ -4,8 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,8 +38,11 @@ public class Vendedor {
 	@Column(name = "dtNascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dtNascimento;
-
 	
+	@ManyToOne
+	@JoinColumn(name = "cdBairro")
+	private Bairro bairro;
+
 	public Vendedor() {	}
 
 	public Vendedor(int cdVendedor, @NotNull String nmVendedor, String nmEndereco, String nrCpf, String telVendedor,
@@ -98,20 +102,21 @@ public class Vendedor {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
+	
+	public Bairro getBairro() {
+		return this.bairro;
+	}
+	
+	public void setBairro(Bairro bairro) {
+		this.bairro = bairro;
+	}
 
 	@Override
 	public String toString() {
-		return "{\"cdVendedor\":" + "\""+ cdVendedor + "\""+ 
-				",\n \"nmVendedor\":"+ "\"" + nmVendedor + "\"" +
-				",\n \"nmEndereco\":"+ "\"" + nmEndereco + "\""	+
-				",\n \"nrCpf\":"+ "\"" + nrCpf +
-				",\n \"telVendedor\":"+ "\"" + telVendedor + "\"" +
-				",\n \"dtNascimento\":"+ "\"" + dtNascimento+ "\"}";
+		return "{cdVendedor:" + cdVendedor + ",\n nmVendedor:" + nmVendedor + ",\n nmEndereco:" + nmEndereco
+				+ ",\n nrCpf:" + nrCpf + ",\n telVendedor:" + telVendedor + ",\n dtNascimento:" + dtNascimento
+				+ ",\n bairro:" + bairro.toString() + " }";
 	}
-	
-	
-	
-	
 
 
 }
