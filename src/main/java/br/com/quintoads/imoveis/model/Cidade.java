@@ -33,6 +33,10 @@ public Cidade(int cdCidade) {
 	this.cdCidade = cdCidade;
 }
 
+public Cidade(String cdCidade) {
+	this.cdCidade = Integer.parseInt(cdCidade);
+}
+
 public Cidade(int cdCidade, @NotNull String nmCidade, Estado estado) {
 	this.cdCidade = cdCidade;
 	this.nmCidade = nmCidade;
@@ -58,11 +62,6 @@ public Estado getEstado() {
 
 public void setEstado(Estado estado) {
 	this.estado = estado;
-}
-
-@Override
-public String toString() {
-	return "{cdCidade:" + cdCidade + ",\n nmCidade:" + nmCidade + ",\n estado:" + estado.toString() + " }";
 }
 
 

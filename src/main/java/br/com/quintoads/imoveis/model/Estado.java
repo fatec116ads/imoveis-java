@@ -16,7 +16,7 @@ public class Estado {
 @Id
 private String uf;
 
-@NotNull
+//@NotNull
 @Column(name = "nome_Estado")
 private String nomeEstado;
 

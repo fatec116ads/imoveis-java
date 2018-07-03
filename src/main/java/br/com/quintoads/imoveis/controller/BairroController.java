@@ -23,12 +23,12 @@ public class BairroController {
 	@ResponseBody
 	public void inserirBairro(@Valid @RequestBody Bairro bairro) {
 		try {
+			System.out.println(bairro.toString());
 			bairroServ.inserir(bairro);
 		}
 		catch (Exception ex) {
 			System.out.println("Erro ao criar o Estado: " + ex.toString() + "\n" + bairro);
 		}
-			System.out.println("Estado criado com sucesso, id: " + bairro.getCdBairro());
 		
 	}
 	@PostMapping("/buscar-pelo-nome")

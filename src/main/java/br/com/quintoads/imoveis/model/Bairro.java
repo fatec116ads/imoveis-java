@@ -18,7 +18,7 @@ public class Bairro {
 @Id
 private int cdBairro;
 
-@NotNull
+//@NotNull
 @Column(name = "nmBairro")
 private String nmBairro;
 
@@ -27,6 +27,12 @@ private String nmBairro;
 private Cidade cidade;
 
 public Bairro() {}
+
+
+
+public Bairro(String cdBairro) {
+	this.cdBairro = Integer.parseInt(cdBairro);
+}
 
 public Bairro(int cdBairro, @NotNull String nmBairro, Cidade cidade) {
 	this.cdBairro = cdBairro;
