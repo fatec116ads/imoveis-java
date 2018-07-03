@@ -23,6 +23,7 @@ public class FaixaImovelController {
 	@ResponseBody
 	public void inserirFaixaImovel(@Valid @RequestBody FaixaImovel faixaImovel) {
 		try {
+			System.out.println(faixaImovel.toString());
 			faixaImovelServ.inserir(faixaImovel);
 		}
 		catch (Exception ex) {
